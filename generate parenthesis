@@ -1,0 +1,17 @@
+class Solution:
+    def generate(self, curr_str, ans, open_count, close_count, n):
+        if open_count == close_count == n:
+            ans.append(curr_str)
+            return
+        if open_count < n:
+            self.generate(curr_str + "(", ans, open_count + 1, close_count, n)
+        if close_count < open_count:
+            self.generate(curr_str + ")", ans, open_count, close_count + 1, n)
+    def generateParenthesis(self, n):
+        curr_str = ""
+        ans = []
+        self.generate(curr_str, ans, 0, 0, n)
+        return ans
+ob = Solution()
+n = int(input())
+print(ob.generateParenthesis(n))
